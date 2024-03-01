@@ -1,7 +1,7 @@
 services:
 
   laravel-docker:
-    container_name: laravel-docker
+    container_name: ''
     build: .
     volumes:
       - ./4-climatize:/var/www/html
@@ -11,10 +11,10 @@ services:
   mysql_db:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: taravel_docker
+      MYSQL_ROOT_PASSWORD: Fl0ky_D8#m9c2#
+      MYSQL_DATABASE: 4_climatize_production
     ports:
-    - 3306:3306
+    - 3307:3307
   
   phpmyadmin:
     image: phpmyadmin:latest
