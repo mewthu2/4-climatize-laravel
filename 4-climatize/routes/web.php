@@ -1,17 +1,17 @@
 <?php
 
+use App\Http\Controllers\ReportsController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::prefix('/dashboard')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    });
 
-    Route::get('/profile', function () {
-        return view('profile');
-    })->name('profile');
+    Route::prefix('/reports')->group(function () {
+        Route::get('/freezer_info', [ReportsController::class, 'freezer_info'])->name('informacoes_freezers');
+    });
 });
 
 Route::get('/', function () {
@@ -21,3 +21,4 @@ Route::get('/', function () {
         return redirect()->route('login');
     }
 });
+

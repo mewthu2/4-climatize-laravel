@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Degelo;
 use App\Models\PanelTemperatura;
 
 class DashboardController extends Controller
 {
     public function index()
-    {   
-        $current_user = auth()->user();
+        {   
+            $cad_usuario = Usuario::where('login', auth()->user()->email)->first();
+            $employees = PanelTemperatura::where('cad_cliente_id', $cad_usuario->cad_cliente_id)->get();
 
-        $cad_usuario = Usuario::where('login', $current_user->email)->first();
-        $employees = PanelTemperatura::where('cad_cliente_id', $cad_usuario->cad_cliente_id)->first();
+            foreach ($employees as $employee) {
+                $employee->estaEmDegelo = Degelo::verificarEtiquetaEmDegelo($employee->etiqueta_ident);
+            }
 
-        return view('dashboard')
-        ->with(compact('cad_usuario', 'employees'));
-    }
+            return view('dashboard/index')
+            ->with(compact('cad_usuario', 'employees'));
+        }
+
 }
