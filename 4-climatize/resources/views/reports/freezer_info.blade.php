@@ -74,8 +74,8 @@
           renderChart(response);
         },
         error: function(xhr, status, error) {
-          alert.error(error);
           $('#loading_status').toggle('');
+          console.error(error);
         }
       });
     });
