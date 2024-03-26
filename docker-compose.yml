@@ -6,19 +6,19 @@ services:
     volumes:
       - ./4-climatize:/var/www/html
     ports:
-      - 9000:80
+      - 8000:8000
   
-  mysql_db:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: Fl0ky_D8#m9c2#
-      MYSQL_DATABASE: 4_climatize_production
-    ports:
-    - 3307:3307
+  # mysql_db:
+  #   image: mysql:latest
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: Fl0ky_D8#m9c2#
+  #     MYSQL_DATABASE: 4_climatize_production
+  #   ports:
+  #   - 3307:3307
   
-  phpmyadmin:
-    image: phpmyadmin:latest
-    ports:
-      - 9001:80
-    environment:
-      - PMA_ARBITRARY=1
+  # phpmyadmin:
+  #   image: phpmyadmin:latest
+  #   ports:
+  #     - 9001:80
+  #   environment:
+  #     - PMA_ARBITRARY=1

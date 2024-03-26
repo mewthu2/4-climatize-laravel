@@ -1,26 +1,42 @@
-FROM php:8.1.0-apache
+# Use the official PHP image as a base
+FROM php:8.1-fpm
+
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y \
+    git \
+    unzip \
+    libpq-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libfreetype6-dev \
+    libzip-dev \
+    zip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql pdo_pgsql zip
+
+# Set the working directory in the container
 WORKDIR /var/www/html
 
-# Mod Rewrite
-RUN a2enmod rewrite
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Linux Library
-RUN apt-get update -y && apt-get install -y \
-    libicu-dev \
-    libmariadb-dev \
-    unzip zip \
-    zlib1g-dev \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libpng-dev 
+# Install PHP dependencies
+RUN composer install
 
-# Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Copy the rest of the application code to the container
+COPY . .
 
-# PHP Extension
-RUN docker-php-ext-install gettext intl pdo_mysql gd
+# Install Node.js and npm
+RUN apt-get update && \
+    apt-get install -y \
+    nodejs \
+    npm
 
-RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd
+# Install npm dependencies and build assets
+RUN npm install && \
+    npm run dev
+
+# Expose port 8000 and start Laravel server
+EXPOSE 8000
+CMD ["php", "artisan", "serve", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,15 +1,11 @@
 setup:
-	@make build
 	@make up 
-	@make composer-update
-build:
-	docker-compose build --no-cache --force-rm
-stop:
-	docker-compose stop
 up:
-	docker-compose up -d
-composer-update:
-	docker exec laravel-docker bash -c "composer update"
-data:
-	docker exec laravel-docker bash -c "php artisan migrate"
-	docker exec laravel-docker bash -c "php artisan db:seed"
+	rm -rf 4-climatize-laravel
+	git clone https://github.com/mewthu2/4-climatize-laravel
+	cp .env /home/dba/app/4-climatize-laravel/4-climatize/.env
+	npm i
+	composer install
+	npm build
+	php artisan serve --host "0.0.0.0" --port "8000"
+	docker-compose build --no-cache --force-rm
