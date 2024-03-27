@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-left font-semibold text-xl text-white leading-tight">
+        <h5 class="text-left font-semibold text-xs text-white leading-tight">
             <i class="fas fa-user"></i> {{ __('Perfil') }}
-        </h2>
+        </h5>
     </x-slot>
 
     <div>
