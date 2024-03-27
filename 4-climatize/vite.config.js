@@ -12,10 +12,5 @@ export default defineConfig({
             ],
             refresh: true,
         }),
-    ],
-    resolve: {
-        alias: {
-            'apexcharts': 'apexcharts/dist/apexcharts.js'
-        }
-    }
+    ]
 });

@@ -50,7 +50,6 @@
 </x-app-layout>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script>
   $(document).ready(function() {
