@@ -10,7 +10,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     Route::prefix('/reports')->group(function () {
-        Route::get('/freezer_info', [ReportsController::class, 'freezer_info'])->name('informacoes_freezers');
+        Route::get('/freezer_info', [ReportsController::class, 'freezer_info'])->name('freezer_info');
     });
 });
 

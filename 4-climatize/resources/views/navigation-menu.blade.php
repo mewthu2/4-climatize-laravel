@@ -7,8 +7,8 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <div class="container flex ml-1">
-                            <x-logo-climatize :width="70" :height="70"></x-logo-climatize>
-                            <span class="text-white mt-4 text-xl">4 Climatize</span>
+                            <x-logo-climatize :width="50" :height="50"></x-logo-climatize>
+                            <span class="text-white mt-2 text-x animate-pulse">4 Climatize</span>
                         </div>            
                     </a>
                 </div>
@@ -19,41 +19,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link>
-                        {{ __('Relatórios') }}
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-white">
+                    <x-nav-link href="{{ route('freezer_info') }}" :active="request()->routeIs('freezer_info')">
+                        {{ __('Gráficos por Freezers') }}
                     </x-nav-link>
-                    <x-dropdown>
-                        <x-slot name="trigger">
-                           <span class="inline-flex 
-                                        items-center 
-                                        px-1 
-                                        pt-1 
-                                        text-sm 
-                                        font-medium
-                                        leading-5
-                                      text-white
-                                        focus:outline-none 
-                                        transition 
-                                        duration-150 
-                                        ease-in-out" 
-                                 style="margin-top: 1.65em;
-                                        margin-left: -2.25em;
-                                        cursor:pointer;">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                </svg>
-                           </span>
-                        </x-slot>
-
-                        <x-slot name="content">
-                            <x-dropdown-link href="{{ route('informacoes_freezers') }}" :active="request()->routeIs('reports/freezer_info')">
-                                {{ __('Gráficos por Freezers') }}
-                            </x-dropdown-link>
-                            <div class="border-t border-gray-200"></div>
-                        </x-slot>
-                    </x-dropdown>
                 </div>
             </div>
 
@@ -186,6 +156,10 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('freezer_info') }}" :active="request()->routeIs('freezer_info')">
+                {{ __('Gráficos por Freezers') }}
             </x-responsive-nav-link>
         </div>
 

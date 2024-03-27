@@ -1,11 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-left font-semibold text-xl text-white leading-tight">
+        <h5 class="text-left font-semibold text-xs text-white leading-tight">
             <i class="fas fa-tachometer-alt"></i> {{ __('Painel Geral de Monitoramento') }}
-        </h2>
+        </h5>
     </x-slot>
     
-    <div class="py-4 px-6 whitespace-normal grid grid-cols-4">
+    <div class="py-4 px-6 whitespace-normal grid lg:grid-cols-4 gap-1 sm:grid-cols-1">
         @foreach($employees as $employee)
             <div class="mb-2 mx-auto sm:px-2 lg:px-2">
                 <div class="overflow-hidden shadow-xl sm:rounded-lg" style="background: #c7caeb;">
@@ -44,17 +44,17 @@
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 gap-1 mt-2 text-center">
-                                <div class="text-xl rounded-lg p-4 shadow-lg @if ($employee->atu < $employee->min || $employee->atu > $employee->max || $employee->estaEmDegelo = false) bg-red-800 @else bg-blue-200 @endif">
+                                <div class="text-x rounded-lg p-4 shadow-lg @if ($employee->atu < $employee->min || $employee->atu > $employee->max || $employee->estaEmDegelo = false) bg-red-800 @else bg-blue-200 @endif">
                                     <span class="font-normal text-gray-500 dark:text-gray-400">
                                         Temperatura atual: 
                                     </span>
-                                    <span class="@if ($employee->atu < $employee->min || $employee->atu > $employee->max || $employee->estaEmDegelo = false) text-yellow-400 animate-pulse @else text-green-800 @endif text-xl break-all">
+                                    <span class="@if ($employee->atu < $employee->min || $employee->atu > $employee->max || $employee->estaEmDegelo = false) text-yellow-400 animate-pulse @else text-green-800 @endif text-x break-all">
                                         {{ $employee->atu }} C°
                                     </span>
                                 </div>
                             </div>
                             <div class="grid grid-cols-3 gap-3 mt-2 text-center">
-                                <div class="text-xs rounded-lg p-4 shadow-lg bg-white">
+                                <div class="text-xs-1 rounded-lg p-4 shadow-lg bg-white">
                                     <span class="font-normal text-gray-500 dark:text-gray-400">
                                         
                                     </span>

@@ -1,16 +1,16 @@
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="text-left font-semibold text-xl text-white leading-tight">
+    <h5 class="text-left font-semibold text-xs text-white leading-tight">
       <i class="fa-solid fa-chart-simple"></i> {{ __('Gráficos por Freezers') }}
-    </h2>
+    </h5>
   </x-slot>
   <div class="">
     <div class="px-4 py-4 grid grid-cols-1 gap-1 mt-2">
       <div class="grid grid-cols-4 gap-1">
-        <div class="py-3 px-4 pe-9 col-span-1">
+        <div class="text-xs lg:py-3 lg:px-4 lg:pe-9 col-span-1">
           Selecione o sensor:
         </div>
-        <select id="select_freezer" class="py-3 px-4 pe-9 col-span-2
+        <select id="select_freezer" class="lg:py-3 lg:px-4 lg:pe-9 col-span-3
                 block w-full border-gray-200 rounded-lg 
                 text-sm focus:border-blue-500 focus:ring-blue-500 
                 disabled:opacity-50 disabled:pointer-events-none dark:white-slate-900
@@ -22,10 +22,10 @@
       </div>
     </div>
     <div class="px-4 grid grid-cols-4 gap-1" id="button_container">
-      <div class="py-3 col-span-1">
+      <div class="text-xs py-3 lg:py-3 lg:px-4 lg:pe-9 col-span-1">
         Filtros: 
       </div>
-      <div class="py-3 col-span-2">
+      <div class="py-3 col-span-3">
         <x-primary-button class="interval-button" value="24">24h</x-primary-button>
         <x-primary-button class="interval-button" value="12">12h</x-primary-button>
         <x-primary-button class="interval-button" value="6">6h</x-primary-button>
@@ -117,8 +117,8 @@
     chart: {
       type: 'area',
       stacked: false,
-      width: 1200,
-      height: 400,
+      width: window.innerWidth > 768 ? 1200 : 300,
+      height: window.innerWidth > 768 ? 400 : 300,
       zoom: {
         type: 'x',
         enabled: true,
